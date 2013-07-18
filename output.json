@@ -1,0 +1,101 @@
+[?1049h[?1h=[1;51r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[51;1H"grader.js" 111L, 3162C[1;1H#!/usr/bin/env node
+[34m/*
+Automatically grade files for the presence of specified HTML tags/attributes.
+Uses commander.js and cheerio. Teaches command line application development
+and basic DOM parsing.
+
+References:
+
+ + cheerio
+   - https://github.com/MatthewMueller/cheerio
+   - http://encosia.com/cheerio-faster-windows-friendly-alternative-jsdom/
+   - http://maxogden.com/scraping-with-node.html
+
+ + commander.js
+   - https://github.com/visionmedia/commander.js
+   - http://tjholowaychuk.com/post/9103188408/commander-js-nodejs-command-line-interfaces-made-easy
+
+ + JSON
+   - http://en.wikipedia.org/wiki/JSON
+   - https://developer.mozilla.org/en-US/docs/JSON
+   - https://developer.mozilla.org/en-US/docs/JSON#JSON_in_Firefox_2
+*/[m
+
+[36mvar[m fs = require([31m'fs'[m);
+[36mvar[m program = require([31m'commander'[m);
+[36mvar[m cheerio = require([31m'cheerio'[m);
+[36mvar[m restler = require([31m'restler'[m);
+[36mvar[m HTMLFILE_DEFAULT = [31m"index.html"[m;
+[36mvar[m CHECKSFILE_DEFAULT = [31m"checks.json"[m;
+
+[36mvar[m assertFileExists = [36mfunction[m(infile) [36m{
+[m    [36mvar[m instr = infile.toString();
+    [33mif[m(!fs.existsSync(instr)) [36m{[m[34;9Hconsole.log([31m"%s does not exist. Exiting."[m, instr);[35;9Hprocess.exit(1); [34m// http://nodejs.org/api/process.html#process_process_exit_code[m
+    [36m}[m
+    [33mreturn[m instr;
+[36m}[m;
+
+[36mvar[m cheerioHtmlFile = [36mfunction[m(htmlfile) [36m{[m
+    [33mreturn[m cheerio.load(fs.readFileSync(htmlfile));
+[36m}[m;
+
+[36mvar[m loadChecks = [36mfunction[m(checksfile) [36m{[m
+    [33mreturn[m JSON.parse(fs.readFileSync(checksfile));
+[36m}[m;
+
+[36mvar[m checkHtmlFile = [36mfunction[m(htmlfile, checksfile) [36m{[m
+    $ = cheerioHtmlFile(htmlfile);
+    [36mvar[m checks = loadChecks(checksfile).sort();[51;116H1,1[11CTop[1;1H[?12l[?25h[?25l[51;116H2[2;1H[?12l[?25h[?25l[51;1HType  :quit<Enter>  to exit Vim[51;116H[K[51;116H2,1[11CTop[2;1H[?12l[?25h[?25l[51;116H[K[51;116H2,1[11CTop[2;1H[?12l[?25h[?25l[51;116H[K[51;116H2,1[11CTop[2;1H[?12l[?25h[?25l[51;116H[K[51;116H2,1[11CTop[2;1H[?12l[?25h[51;1H
+[?1l>[?1049l[?1049h[?1h=[?12;25h[?12l[?25h[27m[m[H[2J[?25l[1;1H#!/usr/bin/env node
+[34m/*
+Automatically grade files for the presence of specified HTML tags/attributes.
+Uses commander.js and cheerio. Teaches command line application development
+and basic DOM parsing.
+
+References:
+
+ + cheerio
+   - https://github.com/MatthewMueller/cheerio
+   - http://encosia.com/cheerio-faster-windows-friendly-alternative-jsdom/
+   - http://maxogden.com/scraping-with-node.html
+
+ + commander.js
+   - https://github.com/visionmedia/commander.js
+   - http://tjholowaychuk.com/post/9103188408/commander-js-nodejs-command-line-interfaces-made-easy
+
+ + JSON
+   - http://en.wikipedia.org/wiki/JSON
+   - https://developer.mozilla.org/en-US/docs/JSON
+   - https://developer.mozilla.org/en-US/docs/JSON#JSON_in_Firefox_2
+*/[m
+
+[36mvar[m fs = require([31m'fs'[m);
+[36mvar[m program = require([31m'commander'[m);
+[36mvar[m cheerio = require([31m'cheerio'[m);
+[36mvar[m restler = require([31m'restler'[m);
+[36mvar[m HTMLFILE_DEFAULT = [31m"index.html"[m;
+[36mvar[m CHECKSFILE_DEFAULT = [31m"checks.json"[m;
+
+[36mvar[m assertFileExists = [36mfunction[m(infile) [36m{
+[m    [36mvar[m instr = infile.toString();
+    [33mif[m(!fs.existsSync(instr)) [36m{[m[34;9Hconsole.log([31m"%s does not exist. Exiting."[m, instr);[35;9Hprocess.exit(1); [34m// http://nodejs.org/api/process.html#process_process_exit_code[m
+    [36m}[m
+    [33mreturn[m instr;
+[36m}[m;
+
+[36mvar[m cheerioHtmlFile = [36mfunction[m(htmlfile) [36m{[m
+    [33mreturn[m cheerio.load(fs.readFileSync(htmlfile));
+[36m}[m;
+
+[36mvar[m loadChecks = [36mfunction[m(checksfile) [36m{[m
+    [33mreturn[m JSON.parse(fs.readFileSync(checksfile));
+[36m}[m;
+
+[36mvar[m checkHtmlFile = [36mfunction[m(htmlfile, checksfile) [36m{[m
+    $ = cheerioHtmlFile(htmlfile);
+    [36mvar[m checks = loadChecks(checksfile).sort();[51;116H2,1[11CTop[2;1H[?12l[?25h[51;1H
+[32mW11: Warning: File "grader.js" has changed since editing started[m
+[32mSee ":help W11" for more info.[m
+[32m[O]K, (L)oad File: [m[?1l>[?1049lVim: Caught deadly signal TERM
+Vim: Finished.
+[51;1H
